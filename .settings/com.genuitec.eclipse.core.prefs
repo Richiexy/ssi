@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+validator.Checked=WebRoot/WEB-INF/static/jsonlintdotcom-master/c/js/jquery-1.6.1.min.js,WebRoot/WEB-INF/static/js/jquery-ui-1.9.2.custom.min.js,WebRoot/WEB-INF/static/jsonlintdotcom-master/c/js/jsl.parser.js,WebRoot/WEB-INF/static/js/jquery.js
+validator.Unchecked=

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+	
+  	<display-name>ssi</display-name>
+  
+  	<context-param>
+		<param-name>webAppRootKey</param-name>
+		<param-value>webapp.root</param-value>
+	</context-param>
+	<listener>
+	    <listener-class>org.springframework.web.util.WebAppRootListener</listener-class>
+	</listener>	
+  
+  	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext-*.xml</param-value>
+  	</context-param>
+  	
+  	<!-- 指定日志配置文件 -->
+	<context-param>
+		<param-name>logbackConfigLocation</param-name>
+		<param-value>classpath:logback.xml</param-value>
+	</context-param>
+  
+  	<!-- 增加对sitemesh的支持 -->
+	<filter> 
+		<filter-name>sitemeshFilter</filter-name> 
+		<filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class> 
+	</filter> 
+	<filter-mapping> 
+		<filter-name>sitemeshFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping> 
+	
+	<!-- spring对字符集进行过滤 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<!-- 加载spring -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<!-- spring mvc -->
+	<servlet>
+		<servlet-name>mvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:mvc-servlet.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>mvc</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 配置cxfservlet -->  
+    <servlet>  
+        <servlet-name>CXFService</servlet-name>  
+        <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>  
+    </servlet>  
+    <servlet-mapping>  
+        <servlet-name>CXFService</servlet-name>  
+        <url-pattern>/cxfServices/*</url-pattern>  
+    </servlet-mapping>  
+	
+	<!-- Spring 刷新Introspector防止内存泄露 -->    
+	 <listener>      
+	 	<listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>     
+	 </listener>   
+	 <!-- session超时定义,单位为分钟 -->    
+	 <session-config>        
+	 	 <session-timeout>30</session-timeout>    
+	 </session-config>
+  
+</web-app>
