@@ -8,7 +8,7 @@
     monitoring="autodetect">  
    
    
-   <util:properties id="configProperties" location="classpath:config.properties"></util:properties>
+   <!-- <util:properties id="configProperties" location="classpath:config.properties"></util:properties> -->
    
     <!--<diskStore path="java.io.tmpdir" /> 临时缓存文件存放位置-->  
     <diskStore path="user.home"/>  

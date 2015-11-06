@@ -77,7 +77,7 @@
         <property name="defaultEncoding">  
             <value>UTF-8</value>  
         </property>  
-	<property name="maxUploadSize" value="100000"/>
+		<property name="maxUploadSize" value="100000"/>
     </bean>  
     
     <!-- 首页视图 -->
